@@ -1,5 +1,5 @@
-// const url = 'http://icanhazip.com';
-const url = 'http://localhost:8080';
+// const url = 'http://localhost:8080';
+const url = 'https://australia-southeast1-civic-maker-x.cloudfunctions.net/submitFormResponses';
 
 const sendFormResponse = async (resp) => {
   const params = {
