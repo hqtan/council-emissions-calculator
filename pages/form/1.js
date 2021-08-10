@@ -30,10 +30,13 @@ export default function Question1() {
         href="/form/2"
         disabled={!km}
         onClick={() =>
-          setAnswers((prev) => ({
-            ...prev,
-            km,
-          }))
+          setAnswers(
+            (prev) => {
+              const response = {...prev, km};
+              console.log(`form 1 updates: ${JSON.stringify(response)}`);
+              return response;
+            }
+          )
         }
       >
         Continue

@@ -61,10 +61,13 @@ export default function Question2() {
         href="/form/3"
         disabled={days.every((v) => v === "didNotWork")}
         onClick={() =>
-          setAnswers((prev) => ({
-            ...prev,
-            week: days,
-          }))
+          setAnswers(
+            (prev) => {
+              const response = { ...prev, week: days, };
+              console.log(`form 2 updates: ${JSON.stringify(response)}`);
+              return response;
+            }
+          )
         }
       >
         Continue

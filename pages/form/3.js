@@ -81,13 +81,14 @@ export default function Question3() {
       </Table>
       <LinkButton
         href="/form/4"
-        onClick={() =>
-          setAnswers((prev) => ({
-            ...prev,
-            transportModes: modes,
-          }))
-        }
         disabled={modes.every((m) => m === "didNotTravel")}
+        onClick={() =>
+          setAnswers((prev) => {
+            const response = { ...prev, transportModes: modes };
+            console.log(`form 3 updates: ${JSON.stringify(response)}`);
+            return response;
+          })
+        }
       >
         Continue
       </LinkButton>

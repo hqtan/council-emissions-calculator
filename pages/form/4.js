@@ -25,10 +25,11 @@ export default function Question4() {
       <LinkButton
         href="/form/5"
         onClick={() =>
-          setAnswers((prev) => ({
-            ...prev,
-            incentive,
-          }))
+          setAnswers((prev) => {
+            const response = { ...prev, incentive };
+            console.log(`form 4 updates: ${JSON.stringify(response)}`);
+            return response;
+          })
         }
       >
         Continue
