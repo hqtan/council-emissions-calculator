@@ -1,7 +1,7 @@
-// const url = 'http://localhost:8080';
-const url = 'https://australia-southeast1-civic-maker-x.cloudfunctions.net/submitFormResponses';
+const url = 'http://localhost:8080';
+// const url = 'https://australia-southeast1-civic-maker-x.cloudfunctions.net/submitFormResponses';
 
-const sendFormResponse = async (resp) => {
+export const sendFormResponse = async (resp) => {
   const params = {
     method: 'POST',
     headers: {
@@ -14,4 +14,15 @@ const sendFormResponse = async (resp) => {
   console.log(`sendFormResponse : (status: ${apiResponse.status}) ${JSON.stringify(text, null, '\t')}`);
 };
 
-export default sendFormResponse;
+export const getFormResponses = async () => {
+  const params = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  const apiResponse = await fetch(url, params);
+  const text = await apiResponse.text();
+  console.log(`getFormResponses : (status: ${apiResponse.status}) ${JSON.stringify(text, null, '\t')}`);
+  return text;
+};

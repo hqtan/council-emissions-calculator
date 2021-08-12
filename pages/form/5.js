@@ -5,7 +5,7 @@ import useForm from "../../components/FormProvider";
 import { departments } from "../../utils/constants";
 import LinkButton from "../../components/LinkButton/LinkButton";
 import capitalize from "../../utils/capitalize";
-import sendFormResponse from "../../utils/dbApi";
+import { sendFormResponse } from "../../utils/dbApi";
 
 export default function Question5() {
   const { answers, setAnswers } = useForm();
