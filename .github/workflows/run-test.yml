@@ -7,6 +7,7 @@ on:
       - '**.md'
       - '.gitignore'
       - '.nvmrc'
+      - '.github/workflows/*.yml'
 
 jobs:
   build:
