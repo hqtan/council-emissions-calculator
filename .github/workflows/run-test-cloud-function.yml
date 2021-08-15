@@ -6,9 +6,10 @@ on:
     paths:
       - 'cloud-functions/**.js'
       - 'cloud-functions/package*.json'
+      - '.github/workflows/run-test-cloud-function.yml'
 
 jobs:
-  build:
+  run-tests:
 
     runs-on: ubuntu-latest
 
