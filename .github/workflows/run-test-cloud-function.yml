@@ -1,14 +1,11 @@
-name: run next lint
+name: run tests for cloud function
 
 on:
   pull_request:
     branches: [ main ]
-    paths-ignore:
-      - '**.md'
-      - '.gitignore'
-      - '.nvmrc'
-      - '.github/workflows/*.yml'
-      - 'cloud-functions/**'
+    paths:
+      - 'cloud-functions/**.js'
+      - 'cloud-functions/package*.json'
 
 jobs:
   build:
@@ -21,7 +18,10 @@ jobs:
 
     - name: set node version with nvm
       shell: bash --login {0}
-      run: nvm install
+      run: |
+        cp .nvmrc cloud-functions/
+        cd cloud-functions
+        nvm install
 
     - name: Cache dependencies
       uses: actions/cache@v2
@@ -31,7 +31,11 @@ jobs:
         key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
 
     - name: Install
-      run: npm install
+      run: |
+        cd cloud-functions
+        npm install
 
-    - name: next lint
-      run: npm run lint
+    - name: run lint
+      run: |
+        cd cloud-functions
+        npm run lint
