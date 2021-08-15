@@ -32,6 +32,7 @@ jobs:
       uses: google-github-actions/deploy-cloud-functions@main
       with:
         name: sheeter
+        entry_point: sheeter
         region: australia-southeast1
         runtime: nodejs14
         source_dir: cloud-functions
