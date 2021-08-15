@@ -23,3 +23,19 @@ jobs:
 
     - name: Use gcloud CLI
       run: gcloud info
+
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - id: deploy
+      name: deploy cloud function
+      uses: google-github-actions/deploy-cloud-functions@main
+      with:
+        name: sheeter
+        region: australia-southeast1
+        runtime: nodejs14
+        source_dir: cloud-functions
+
+    # Example of using the output
+    - id: test
+      run: curl "${{ steps.deploy.outputs.url }}"
