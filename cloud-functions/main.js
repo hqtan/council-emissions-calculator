@@ -94,9 +94,9 @@ const convertFormResponseToList = (formResp) => {
   //   "incentive": "I'd like to have better biking lanes.",
   //   "department": "Education",
   // };
-  xs = [];
+  let xs = [];
 
-  for (const [k,v] of Object.entries(formResp)) {
+  for (const [unused,v] of Object.entries(formResp)) {
     // if v is a list, concatenate on to xs
     if (Array.isArray(v)) { xs = xs.concat(v); }
     else { xs.push(v); }
