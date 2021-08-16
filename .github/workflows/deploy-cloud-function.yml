@@ -28,11 +28,10 @@ jobs:
       uses: actions/checkout@v2
 
     - id: deploy
-      name: deploy cloud function
       uses: google-github-actions/deploy-cloud-functions@main
       with:
         name: sheeter
-        entry_point: sheeter
+        credentials: ${{ secrets.GCP_SA_KEY }}
         region: australia-southeast1
         runtime: nodejs14
         source_dir: cloud-functions
