@@ -1,5 +1,5 @@
-const url = 'http://localhost:8080';
-// const url = 'https://australia-southeast1-civic-maker-x.cloudfunctions.net/submitFormResponses';
+// const url = 'http://localhost:8080';
+const url = 'https://australia-southeast1-civic-maker-x.cloudfunctions.net/sheeter';
 
 export const sendFormResponse = async (resp) => {
   const params = {
