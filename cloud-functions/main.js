@@ -6,6 +6,8 @@ exports.sheeter = async (req, res) => {
   // and caches preflight response for 3600s
   res.set('Access-Control-Allow-Origin', '*');
 
+  console.log(`[INFO] request hostname: ${req.hostname}`);
+
   if (req.method === 'OPTIONS') {
     // Send response to OPTIONS requests
     res.set('Access-Control-Allow-Methods', 'GET, POST');
@@ -39,7 +41,7 @@ exports.sheeter = async (req, res) => {
     }
 
     // console.log(req.body);
-    console.log(`response from sheets: ${JSON.stringify(shres, null, '  ')}`);
+    console.log(`[INFO] response from sheets: ${JSON.stringify(shres, null, '  ')}`);
 
     res.send(shres.data);
   }
