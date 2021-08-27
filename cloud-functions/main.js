@@ -17,11 +17,19 @@ exports.sheeter = async (req, res) => {
   }
   
   else {
+    const keysEnvVar = process.env['GCP_APP_CREDS'];
+
+    if (!keysEnvVar) {
+      throw new Error('[ERR] The $GCP_APP_CREDS environment variable was not found!');
+    }
+    const keys = JSON.parse(keysEnvVar);
+
     const auth = new Sheets.auth.GoogleAuth({
       scopes: ['https://www.googleapis.com/auth/spreadsheets']
     });
 
-    const authClient = await auth.getClient();
+    // const authClient = await auth.getClient();
+    const authClient = auth.fromJSON(keys);
 
     // const sheets = Sheets({version: 'v4', auth: authClient});
     const sheets = await Sheets.sheets({
