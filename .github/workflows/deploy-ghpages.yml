@@ -8,7 +8,6 @@ on:
       - '.gitignore'
       - '.nvmrc'
       - '.github/workflows/*.yml'
-      - 'cloud-functions/**'
 
 jobs:
   build:
