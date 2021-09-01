@@ -1,27 +1,35 @@
 const Sheets = require('@googleapis/sheets');
 
-exports.sheeter = async (req, res) => {
+const sheeter = async (req, res) => {
   // Set CORS headers for preflight requests
   // Allows GETs from any origin with the Content-Type header
   // and caches preflight response for 3600s
-  res.set('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', '*');
 
   console.log(`[INFO] request hostname: ${req.hostname}`);
 
   if (req.method === 'OPTIONS') {
     // Send response to OPTIONS requests
-    res.set('Access-Control-Allow-Methods', 'GET, POST');
-    res.set('Access-Control-Allow-Headers', 'Content-Type');
-    res.set('Access-Control-Max-Age', '3600');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Max-Age', '3600');
     res.status(204).send('');
   }
-  
+
   else {
+    const keysEnvVar = process.env['GCP_APP_CREDS'];
+
+    if (!keysEnvVar) {
+      throw new Error('[ERR] The $GCP_APP_CREDS environment variable was not found!');
+    }
+    const keys = JSON.parse(keysEnvVar);
+
     const auth = new Sheets.auth.GoogleAuth({
       scopes: ['https://www.googleapis.com/auth/spreadsheets']
     });
 
-    const authClient = await auth.getClient();
+    // const authClient = await auth.getClient();
+    const authClient = auth.fromJSON(keys);
 
     // const sheets = Sheets({version: 'v4', auth: authClient});
     const sheets = await Sheets.sheets({
@@ -107,3 +115,5 @@ const convertFormResponseToList = (formResp) => {
   console.log(`transformed response: ${xs}`)
   return xs;
 }
+
+export default sheeter;

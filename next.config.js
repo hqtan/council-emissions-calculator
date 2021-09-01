@@ -13,9 +13,5 @@ module.exports = {
 
     return config;
   },
-  basePath: isProduction ? "/council-emissions-calculator-spike" : "",
-  assetPrefix: isProduction
-    ? "/council-emissions-calculator-spike"
-    : "",
   reactStrictMode: true,
 }
