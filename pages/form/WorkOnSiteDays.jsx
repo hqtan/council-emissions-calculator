@@ -2,7 +2,6 @@ import { Button, Heading, Box, Text } from "@chakra-ui/react";
 import Layout from "../../components/Layout/Layout";
 import DaysOfTheWeekContainer from "../../components/DaysOfTheWeek/DaysOfTheWeekContainer";
 
-import { BackButton } from "../../components/LinkButton/LinkButton";
 import Q3Progress from "../../public/images/progress-bar/q3-progress-dots.svg";
 import Q3Cloud from "../../public/images/clouds/cloud-q3.svg";
 
