@@ -8,6 +8,7 @@ export default function DaysOfTheWeekContainer({
   saveDataAndLogs,
   customHref,
   disabledDays,
+  selectedDays,
 }) {
   // initial state for days of the week has info if it's selected or not (instead of having 2 separate states)
   const [daysOfTheWeek, setDaysOfTheWeek] = useState([
@@ -67,7 +68,19 @@ export default function DaysOfTheWeekContainer({
   };
   disableSelectedDaysOnLoad(disabledDays);
 
-  // on click, the buttom will change colour and the state will be updated to include selected buttons
+  // select days already selected in the previous step by comparing to the props array
+  const selectDaysOnLoad = (days) => {
+    days.forEach((day) => {
+      daysOfTheWeek.map((item) => {
+        if (item.day == day) {
+          item.isSelected = true;
+        }
+      });
+    });
+  };
+  selectDaysOnLoad(selectedDays);
+
+  // on click, the button will change colour and the state will be updated to include selected buttons
   const handleClick = (value) => {
     let updatedData = [...daysOfTheWeek];
 
@@ -137,7 +150,8 @@ export default function DaysOfTheWeekContainer({
             H="55px"
             justifySelf="right"
             onClick={() => {
-              setNumberOfDays();
+              const selectedDays = daysOfTheWeek.filter(item => item.isSelected).map(x => x.day);
+              setNumberOfDays(selectedDays);
               saveDataAndLogs();
             }}
           >
