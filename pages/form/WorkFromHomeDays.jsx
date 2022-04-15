@@ -50,9 +50,8 @@ export default function DaysOfTheWeekSelection() {
     sendLogs(logMessage(logMsg));
   }
 
-  // TODO: UPDATE THIS
-  // * need a way to have buttons for already selected wfh days to stay selected 
-  //   (but not disabled)
+  // select buttons already selected as wfh days
+  const AlreadySelectedWFHDays = answers.wfhDays;
 
   // disable buttons selected for onsite days
   const DaysDisabled = answers.onsiteDays;
@@ -73,6 +72,7 @@ export default function DaysOfTheWeekSelection() {
           setNumberOfDays={days => setWFHDays(days)}
           saveDataAndLogs={() => saveDataAndShowLog("Next button clicked")}
           disabledDays={DaysDisabled}
+          selectedDays={AlreadySelectedWFHDays}
           customHref={"/form/TravelMethod"}
         />
     </Layout>
